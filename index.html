@@ -43,6 +43,9 @@ table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
 th{text-align:left;font-weight:650;color:var(--ink);background:var(--head-bg);border-bottom:1px solid var(--rule-strong);padding:9px 10px}
 td{padding:10px;border-bottom:1px solid var(--rule);vertical-align:top}
 td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.reasons td:first-child{white-space:normal;min-width:190px;font-family:var(--serif);font-weight:400;font-size:14px}
+.num td{font-variant-numeric:tabular-nums}
+.note{font-size:12.5px;color:var(--muted);margin:10px 0 0;max-width:100ch}
 .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
 .good{color:var(--good);background:var(--good-bg)}.warn{color:var(--warn);background:var(--warn-bg)}
 a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
@@ -71,7 +74,22 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </div>
 <p style="margin-top:12px">Japan made loneliness and isolation a national policy with a law in force since April 2024. Its families also lack the time: 3.65 million people work while caregiving, and 106,000 quit their jobs for it in one year (2022).</p>
 
-<h2>2 · People already pay</h2>
+<h2>2 · Why families buy</h2>
+<p>The buyer is the adult child; the user is the parent. Five reasons a child pays, each backed by published evidence:</p>
+<div class="frame"><table class="reasons">
+<thead><tr><th>In the buyer's words</th><th>Evidence</th><th>What our product does</th></tr></thead>
+<tbody>
+<tr><td>"I worry something happens to Mom and nobody knows."</td><td>About 80% of adult children living in another prefecture from a parent 70+ worry, and fewer than 40% actively check (Secom survey, Japan). The top fear, at 47.8%, is a collapse nobody notices (LIFULL senior, 2024).</td><td>Alerts the family if she misses her call or sounds unwell.</td></tr>
+<tr><td>"I can't be there every day. I have a job and kids."</td><td>Six in 10 U.S. family caregivers are employed and half of them report work disruptions; nearly 1 in 3 are also raising children (AARP/NAC, 2025). In Japan, 106,000 people quit their jobs for caregiving in one year.</td><td>A daily conversation happens even when the child can't call; the weekly summary takes five minutes to read.</td></tr>
+<tr><td>"I feel guilty that Mom is lonely."</td><td>35% of U.S. adults 60+ are lonely (AARP, 2025). The CDC lists isolation as a risk for heart disease, stroke, dementia, depression and earlier death.</td><td>Someone talks with her every day about things she cares about.</td></tr>
+<tr><td>"I want to save her stories before it's too late."</td><td>Storyworth reports printing over 1 million memoir books, mostly bought as gifts. In a UK poll, over two-thirds of adults who lost a grandparent regretted not asking about their life.</td><td>Every call records a little more of her life story for the family to keep.</td></tr>
+<tr><td>"I want to notice early if something is changing."</td><td>37.5% of children with a parent living alone worry about dementia (LIFULL senior, 2024).</td><td>The summary flags changes such as shorter calls or low mood. It is a prompt to check in, not a diagnosis.</td></tr>
+</tbody></table></div>
+<p style="margin-top:12px"><strong>Why the parent keeps answering:</strong> people enjoy talking about their own lives. Reminiscence is an established activity in dementia care; a Cochrane review found some evidence it helps quality of life and communication, with small effects. A call that knows her hometown, friends and history gives her more to say than "I'm fine."</p>
+<p><strong>Families already spend on care:</strong> U.S. family caregivers pay roughly $7,200 a year out of pocket (AARP, 2025).</p>
+<p class="note">These are published findings. Our six interviews will check whether buyers describe these reasons in their own words.</p>
+
+<h2>3 · People already pay</h2>
 <div class="frame"><table>
 <thead><tr><th>Who pays</th><th>What they buy today</th><th>Price</th><th>Evidence</th></tr></thead>
 <tbody>
@@ -82,7 +100,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <tr><td>Health plans</td><td>Human companions: Papa</td><td>Per member per month</td><td>Plans pay when visits lead to checkups, but about 36 clients left for 2024</td></tr>
 </tbody></table></div>
 
-<h2>3 · The gap we fill</h2>
+<h2>4 · The gap we fill</h2>
 <div class="cols">
 <div>
 <h3>What exists</h3>
@@ -104,7 +122,33 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </div>
 </div>
 
-<h2>4 · How it meets the course requirements</h2>
+<h2>5 · Cost and margin</h2>
+<p>Cost to serve one parent with a 10-minute call every day (300 minutes a month):</p>
+<ul>
+<li><strong>Phone:</strong> Twilio outbound calls cost $0.014 a minute, so $4.20 a month.</li>
+<li><strong>GPU:</strong> a Google Cloud L4 VM costs about $0.71 an hour on demand. We assume it is busy half the day, since calls cluster at certain hours.</li>
+<li><strong>Storage and summaries:</strong> about $0.50 a month (our estimate).</li>
+</ul>
+<div class="frame" style="margin-top:12px"><table class="num">
+<thead><tr><th>Calls one L4 handles at once</th><th>GPU per parent</th><th>Total cost per month</th><th>Margin at $20</th><th>Margin at $29</th></tr></thead>
+<tbody>
+<tr><td>1 (worst case)</td><td>$7.10</td><td>~$11.80</td><td>41%</td><td>59%</td></tr>
+<tr><td>4</td><td>$1.78</td><td>~$6.50</td><td>68%</td><td>78%</td></tr>
+<tr><td>8</td><td>$0.89</td><td>~$5.60</td><td>72%</td><td>81%</td></tr>
+</tbody></table></div>
+<div class="cols" style="margin-top:14px">
+<div>
+<h3>Senior living</h3>
+<p>One community at about $500 a month, with 20 residents each getting three 10-minute calls a week: about 2,600 minutes, or roughly $52 in phone and GPU cost. That is about a 90% gross margin, and one sale covers 20 people.</p>
+</div>
+<div>
+<h3>Limits</h3>
+<p>At Japan Post's ¥1,070 price (about $7) a daily call loses money, so we price as companionship ($20–$29), not as a cheap safety check. These are gross margins; they leave out marketing, support and development.</p>
+</div>
+</div>
+<p class="note">The number of calls one L4 can handle at once is an assumption. We will measure it, along with GPU-seconds per call and cost per family per month, as part of the weekly demos.</p>
+
+<h2>6 · How it meets the course requirements</h2>
 <div class="frame"><table>
 <thead><tr><th>Requirement</th><th>How we meet it</th></tr></thead>
 <tbody>
@@ -115,7 +159,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <tr><td>1g · Six interviews</td><td>Adult children with aging parents, older adults, and a senior living activity director, recorded with permission.</td></tr>
 </tbody></table></div>
 
-<h2>5 · What we still have to prove</h2>
+<h2>7 · What we still have to prove</h2>
 <div class="cols">
 <div>
 <ul>
@@ -137,7 +181,9 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 <p class="label" style="margin-bottom:6px">Sources</p>
 <ul>
 <li>Loneliness, U.S.: <a href="https://press.aarp.org/2025-12-03-New-AARP-Research-Loneliness-is-on-the-Rise">AARP, Dec 2025</a></li>
-<li>Caregivers, U.S.: <a href="https://www.caregivingintheus.org/reports/2025-executive-summary-2/">AARP / NAC, Caregiving in the US 2025</a></li>
+<li>Caregivers, U.S.: <a href="https://www.caregivingintheus.org/reports/2025-executive-summary-2/">AARP / NAC, Caregiving in the US 2025</a>; <a href="https://www.aarp.org/press/releases/2025-07-24-new-report-reveals-crisis-point-for-americas-63-million-family-caregivers.html">AARP press release, July 2025</a></li>
+<li>Why families buy: <a href="https://dime.jp/genre/889416">Secom survey via DIME</a>, <a href="https://forbesjapan.com/articles/detail/73035">LIFULL senior survey via Forbes Japan</a>, <a href="https://www.cdc.gov/social-connectedness/risk-factors/index.html">CDC on isolation and health</a>, <a href="https://www.yorkshireeveningpost.co.uk/read-this/more-than-two-thirds-of-adults-regret-not-talking-to-their-grandparents-about-their-lives-and-memories-before-they-passed-away-3407285">SSAFA poll</a>, <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8132012/">reminiscence therapy evidence (Macleod et al., on the Cochrane review)</a></li>
+<li>Costs: <a href="https://twilio.com/voice/pricing">Twilio voice pricing</a>, <a href="https://cloud.google.com/products/compute/pricing/accelerator-optimized?hl=en">Google Cloud accelerator pricing</a></li>
 <li>Medicare and isolation: <a href="https://www.aarp.org/ppi/info-2017/medicare-spends-more-on-socially-isolated-older-adults/">AARP Public Policy Institute and Stanford, 2017</a></li>
 <li>Japan, living alone 2020–2050: <a href="https://www.afpbb.com/articles/-/3514761">IPSS projection via AFPBB</a></li>
 <li>Japan, conversation frequency: <a href="https://sp.m.jiji.com/english/show/33757">2024 White Paper on Aging Society via Jiji</a></li>
