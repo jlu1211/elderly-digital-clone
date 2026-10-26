@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Elderly Digital Clone: an AI companion that calls an older parent every day and talks with them about their own life. EE542 final project brief, Group 6.">
+<title>Elderly Digital Clone Brief</title>
+<style>
+:root{
+  --bg:#ffffff; --fg:#3a3d39; --ink:#2b2e2a; --muted:#72756e; --accent:#626b5c; --link:#465f54;
+  --rule:#dedfd9; --rule-strong:#8c9189; --head-bg:#f6f6f3;
+  --good:#2f6a3a; --good-bg:#e3efe3; --warn:#7a5a12; --warn-bg:#f5ecd0;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:Arial,"Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#1b1c1a; --fg:#d6d9d1; --ink:#eef0ea; --muted:#9da196; --accent:#aab59d; --link:#a6c9b6;
+  --rule:#363833; --rule-strong:#5d6158; --head-bg:#242622;
+  --good:#9fd0a6; --good-bg:#23382a; --warn:#e3c374; --warn-bg:#3d3420; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14.5px/1.62 var(--sans)}
+main{max-width:940px;margin:0 auto;padding:52px max(16px,env(safe-area-inset-right,0px)) 96px max(16px,env(safe-area-inset-left,0px))}
+.eyebrow{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);font-weight:700;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between}
+.eyebrow span{color:var(--muted);font-weight:500;letter-spacing:.06em}
+h1{font-family:var(--serif);font-weight:500;letter-spacing:-.03em;font-size:clamp(32px,4.6vw,46px);line-height:1.1;color:var(--ink);margin:14px 0 8px;text-wrap:balance}
+h2{font-size:17px;font-weight:650;color:var(--ink);margin:40px 0 12px;padding-top:14px;border-top:1px solid var(--rule-strong);text-wrap:balance}
+.subtitle{font-size:17px;color:var(--muted);margin:0 0 22px;max-width:66ch}
+.pitch{font-family:var(--serif);font-size:18.5px;line-height:1.58;color:var(--ink);border-left:2px solid var(--accent);padding:4px 0 4px 20px;margin:20px 0 8px;max-width:72ch}
+.label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:0 28px}
+.fact{padding:12px 0;border-bottom:1px solid var(--rule);min-width:0}
+.fact b{display:block;font-size:22px;font-weight:700;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.fact span{font-size:13px;display:block}
+.fact small{font-size:11.5px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:12px 36px}
+.cols > div{min-width:0}
+h3{font-size:14px;font-weight:700;color:var(--ink);margin:6px 0 6px}
+ul,ol{margin:0;padding-left:20px}
+li{margin:0 0 8px}
+.frame{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{text-align:left;font-weight:650;color:var(--ink);background:var(--head-bg);border-bottom:1px solid var(--rule-strong);padding:9px 10px}
+td{padding:10px;border-bottom:1px solid var(--rule);vertical-align:top}
+td:first-child{font-weight:700;color:var(--ink);white-space:nowrap}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.good{color:var(--good);background:var(--good-bg)}.warn{color:var(--warn);background:var(--warn-bg)}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.foot{font-size:12px;color:var(--muted);margin-top:28px;max-width:100ch}
+.foot li{margin:0 0 4px;overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">EE542 final project · Group 6 <span>Brief for the instructor meeting · October 2026</span></div>
+<h1>Elderly Digital Clone</h1>
+<p class="subtitle">An AI companion that calls an older parent every day and talks with them about their own life, using stories, photos and voice memories the family has approved, then sends the family a short summary.</p>
+
+<p class="label">The 30-second version</p>
+<p class="pitch">Older adults living alone are isolated, and their working children cannot be there every day. Families already pay for two things: memory books (Storyworth has printed over a million) and remote safety checks (Japanese families pay ¥1,000–¥3,300 a month to profitable companies like ALSOK and Zojirushi). No one sells a daily conversation grounded in the parent's own life. That is our product. The open question, which our interviews will test, is whether families pay monthly for conversation and not just for a safety check.</p>
+
+<h2>1 · The need is measured</h2>
+<div class="facts">
+<div class="fact"><b>35%</b><span>of U.S. adults 60+ are lonely; 46% of ages 45–59, the adult children, are too</span><small>AARP, Dec 2025</small></div>
+<div class="fact"><b>59 million</b><span>Americans care for an adult with a complex medical condition or disability</span><small>AARP / NAC, 2025</small></div>
+<div class="fact"><b>$6.7 billion</b><span>a year in extra Medicare spending linked to social isolation in older adults</span><small>AARP / Stanford, 2017 · association</small></div>
+<div class="fact"><b>7.37M → 10.83M</b><span>people 65+ living alone in Japan, 2020 to 2050</span><small>IPSS projection, 2024</small></div>
+<div class="fact"><b>38.9%</b><span>of older Japanese living alone talk with someone every day (72.5% of all older adults)</span><small>White Paper on Aging Society, 2024</small></div>
+<div class="fact"><b>76,020</b><span>people living alone died at home in Japan in 2024; about 21,856 were found 8+ days later</span><small>National Police Agency; Cabinet Office</small></div>
+</div>
+<p style="margin-top:12px">Japan made loneliness and isolation a national policy with a law in force since April 2024. Its families also lack the time: 3.65 million people work while caregiving, and 106,000 quit their jobs for it in one year (2022).</p>
+
+<h2>2 · People already pay</h2>
+<div class="frame"><table>
+<thead><tr><th>Who pays</th><th>What they buy today</th><th>Price</th><th>Evidence</th></tr></thead>
+<tbody>
+<tr><td>Adult children (gift)</td><td>Memory books: Storyworth, Remento</td><td>$69–$199 once</td><td>Storyworth reports 1M+ books and positive cash flow (company claims)</td></tr>
+<tr><td>Families in Japan (monthly)</td><td>Remote safety checks: Japan Post, Zojirushi, ALSOK, Secom</td><td>¥1,070–¥3,300 / month</td><td>Zojirushi has run its service since 2001; ALSOK, Secom and Zojirushi report profits</td></tr>
+<tr><td>Government</td><td>ElliQ companion robots (New York); Hyodol dolls (Korea)</td><td>ElliQ $39–$59 / month retail</td><td>New York program: 834 enrolled, 3,500+ applications</td></tr>
+<tr><td>Senior living operators</td><td>Group reminiscence sessions: Rendever</td><td>About $500 / community / month</td><td>Sold only to communities; residents pay nothing</td></tr>
+<tr><td>Health plans</td><td>Human companions: Papa</td><td>Per member per month</td><td>Plans pay when visits lead to checkups, but about 36 clients left for 2024</td></tr>
+</tbody></table></div>
+
+<h2>3 · The gap we fill</h2>
+<div class="cols">
+<div>
+<h3>What exists</h3>
+<ul>
+<li><strong>Memory products</strong> capture stories once and stop at the book.</li>
+<li><strong>Companions</strong> (ElliQ, Meela) talk daily but do not know the person's life.</li>
+<li><strong>Safety checks</strong> (Japan Post, Zojirushi) confirm the parent is all right but do not talk with them.</li>
+<li><strong>HereAfter AI</strong>, the closest, builds a voice avatar mainly for after a person dies.</li>
+</ul>
+</div>
+<div>
+<h3>What we build</h3>
+<ul>
+<li>A daily phone call, so the parent needs no new device or app.</li>
+<li>Conversation grounded in family-approved memories (retrieval over stories, photos and voice notes).</li>
+<li>A weekly summary to the family, with a flag if the parent misses calls or sounds unwell.</li>
+<li>Business model: start as a memory gift, convert to a monthly plan, and pilot with one senior living community.</li>
+</ul>
+</div>
+</div>
+
+<h2>4 · How it meets the course requirements</h2>
+<div class="frame"><table>
+<thead><tr><th>Requirement</th><th>How we meet it</th></tr></thead>
+<tbody>
+<tr><td>1c · Path ii</td><td>A digital clone built from the family's knowledge of the parent; the handout itself lists a "dementia support system for the elderly" as a path ii example.</td></tr>
+<tr><td>1d · GPU and cloud</td><td>GPU inference for speech recognition, the language model and the voice; GPU embedding of memories. The cloud hosts each family's private memory store, the phone line and the summaries. We ran a cloud L4 GPU in Lab 8.</td></tr>
+<tr><td>1e · Profitable companies</td><td>ALSOK, Secom and Zojirushi run paid elderly watch-over services and report profits; Storyworth reports positive cash flow.</td></tr>
+<tr><td>1f · Why others spend</td><td>Isolation is linked to $6.7B a year in extra Medicare spending, and Japan passed a national law on it, which is why governments and health plans fund companionship.</td></tr>
+<tr><td>1g · Six interviews</td><td>Adult children with aging parents, older adults, and a senior living activity director, recorded with permission.</td></tr>
+</tbody></table></div>
+
+<h2>5 · What we still have to prove</h2>
+<div class="cols">
+<div>
+<ul>
+<li><span class="pill warn">Main risk</span> Families pay for gifts and cheap safety checks; we have no evidence yet that they pay monthly for conversation. Amazon retired its $19.99/month Alexa Together in May 2025.</li>
+<li>Older adults have to keep picking up the phone.</li>
+</ul>
+</div>
+<div>
+<ul>
+<li>Using a relative's voice needs clear consent, and people with dementia may not be able to give it.</li>
+<li>California's companion-chatbot law (SB 243, since January 2026) requires telling users it is AI and publishing self-harm protocols.</li>
+<li>Inference cost per call has to stay below what families will pay; we will measure GPU-seconds per conversation.</li>
+</ul>
+</div>
+</div>
+<p style="margin-top:10px"><strong>Interview questions that decide it:</strong> What do you already spend each month on your parent's safety or care? Would you pay for a daily call that remembers your parent's stories plus a weekly summary, and at what price? Would your parent keep answering it?</p>
+
+<div class="foot">
+<p class="label" style="margin-bottom:6px">Sources</p>
+<ul>
+<li>Loneliness, U.S.: <a href="https://press.aarp.org/2025-12-03-New-AARP-Research-Loneliness-is-on-the-Rise">AARP, Dec 2025</a></li>
+<li>Caregivers, U.S.: <a href="https://www.caregivingintheus.org/reports/2025-executive-summary-2/">AARP / NAC, Caregiving in the US 2025</a></li>
+<li>Medicare and isolation: <a href="https://www.aarp.org/ppi/info-2017/medicare-spends-more-on-socially-isolated-older-adults/">AARP Public Policy Institute and Stanford, 2017</a></li>
+<li>Japan, living alone 2020–2050: <a href="https://www.afpbb.com/articles/-/3514761">IPSS projection via AFPBB</a></li>
+<li>Japan, conversation frequency: <a href="https://sp.m.jiji.com/english/show/33757">2024 White Paper on Aging Society via Jiji</a></li>
+<li>Japan, deaths at home: <a href="https://thepeninsulaqatar.com/article/11/04/2025/over-76000-people-die-alone-in-japan-in-2024">National Police Agency 2024 via The Peninsula</a>; <a href="https://www.cao.go.jp/kodoku_koritsu/torikumi/project_team/dai4/pdf/shiryou5.pdf">Cabinet Office isolation-death estimate</a></li>
+<li>Japan, loneliness law: <a href="https://www.cao.go.jp/kodoku_koritsu/jutenkeikaku_english_r07.pdf">Cabinet Office priority plan (English)</a></li>
+<li>Japan, working caregivers: <a href="https://www.mhlw.go.jp/content/12300000/001337170.pdf">MHLW on the 2022 Employment Status Survey</a></li>
+<li>Watch-over services: <a href="https://www.post.japanpost.jp/life/mimamori/">Japan Post</a>, <a href="https://www.itmedia.co.jp/pcuser/spv/2304/20/news077.html">Zojirushi via ITmedia</a>, <a href="https://www.alsok.co.jp/lp/mimamori07/">ALSOK</a></li>
+<li>Memory products: <a href="https://help.storyworth.com/en_US/book-pricing">Storyworth pricing</a>, <a href="https://welcome.storyworth.com/about/">Storyworth about</a>, <a href="https://help.remento.co/en/articles/8365892-remento-s-pricing-guide">Remento pricing</a></li>
+<li>Companions: <a href="https://elliq.com/products/membership">ElliQ pricing</a>, <a href="https://aging.ny.gov/transforming-care-older-adults-three-years-success-ny-older-adults-living-elliq">New York State ElliQ program</a>, <a href="https://rendever.com/senior-living/pricing">Rendever</a>, <a href="https://www.beckerspayer.com/payer/nearly-3-dozen-payers-drop-senior-companionship-company/">Papa payer exits</a></li>
+<li>Risks: <a href="https://www.aboutamazon.com/md/news/devices/alexa-together-is-helping-bridge-the-miles-between-families">Alexa Together notice</a>, <a href="https://fpf.org/blog/understanding-the-new-wave-of-chatbot-legislation-california-sb-243-and-beyond/">California SB 243</a></li>
+</ul>
+</div>
+</main>
+</body>
+</html>
